@@ -14,8 +14,8 @@ clone. If a step fails, the fix is in the scaffold, not in the reader's patience
 
 ```
 ymk doctor          # clean
-ymk env pull        # succeeds with a token set
-ymk dev             # bot starts and answers /ping
+ymk dev             # fetches env, starts, answers /ping
+ymk env pull        # writes .env.local (editors only)
 ymk env diff        # no drift
 ymk bot deploy      # builds and starts (stage 8+)
 ymk bot logs        # streams
@@ -23,11 +23,22 @@ ymk bot logs        # streams
 
 Add a rung to this list only when the CLI ships the command.
 
+## `yumekiseki.json` — two fields, no exceptions
+
+```json
+{ "project": "proj_abc", "entrypoint": "./src/main.ts" }
+```
+
+- **Never add a permissions block.** The platform owns the permission policy,
+  and the CLI applies it identically for `ymk dev` and hosted runs (D-292).
+  A permissions list in this file would be a security hole: a customer could
+  edit their own sandbox.
+- **Never add env names.** The platform assigns them; the CLI fetches names and
+  values together (D-293).
+- Unknown keys are rejected by the CLI, so adding one does not help anyway.
+
 ## Constraints
 
-- **`yumekiseki.json` is authoritative.** Declared env names and permission
-  intent live there; `ymk dev` derives `--allow-*` from it. Never hardcode a
-  flag in a task script that the CLI would derive differently.
 - **No network at import time.** Nothing may fetch during module load; the
   runtime uses `--cached-only` (D-223).
 - **Static entrypoint.** `./src/main.ts` and its static imports are the bundle.
@@ -36,5 +47,5 @@ Add a rung to this list only when the CLI ships the command.
 
 ## When you change the scaffold
 
-Bump the scaffold's own version and note the CLI version it was tested against.
-A scaffold that only works with an unpublished CLI is a bug.
+Bump the scaffold's own version and note the `ymk` version it was tested
+against. A scaffold that only works with an unpublished CLI is a bug.
