@@ -1,0 +1,17 @@
+{
+  "name": "my-bot",
+  "version": "0.1.0",
+  "exports": "./src/main.ts",
+  "tasks": {
+    "dev": "deno run --allow-read --allow-write=./data --allow-net=discord.com,gateway.discord.gg,api.yumekiseki.com --allow-env=DISCORD_TOKEN,YUMEKISEKI_API_KEY,YUMEKISEKI_PROJECT ./src/main.ts",
+    "check": "deno check ./src/main.ts",
+    "test": "deno test --allow-env"
+  },
+  "imports": {
+    "@yumekiseki/sdk": "jsr:@yumekiseki/sdk@^0",
+    "discord.deno": "https://deno.land/x/discord_api@v10.0.0/mod.ts"
+  },
+  "fmt": {
+    "lineWidth": 100
+  }
+}

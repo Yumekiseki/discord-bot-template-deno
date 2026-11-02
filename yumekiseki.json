@@ -1,0 +1,12 @@
+{
+  "project": "my-bot",
+  "service": "bot",
+  "entrypoint": "./src/main.ts",
+  "runtime": "deno",
+  "permissions": {
+    "read": ["."],
+    "write": ["./data"],
+    "net": ["discord.com", "gateway.discord.gg", "api.yumekiseki.com"],
+    "env": ["DISCORD_TOKEN", "YUMEKISEKI_API_KEY", "YUMEKISEKI_PROJECT"]
+  }
+}

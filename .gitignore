@@ -1,0 +1,10 @@
+# Environment (never commit values)
+.env.local
+.env
+.env.*.local
+
+# Local bot state
+/data
+
+# Deno
+.deno/
