@@ -14,12 +14,17 @@ clone. If a step fails, the fix is in the scaffold, not in the reader's patience
 
 ```
 ymk doctor          # clean
-ymk dev             # fetches env, starts, answers /ping
+ymk dev             # fetches env, starts against real Discord, answers /ping
+ymk bot test        # hosted run against the simulator
 ymk env pull        # writes .env.local (editors only)
 ymk env diff        # no drift
 ymk bot deploy      # builds and starts (stage 8+)
 ymk bot logs        # streams
 ```
+
+There is no local simulator and no mock mode in `ymk dev` — simulated runs are
+hosted only (D-297, D-298). Do not add a `--simulate` flag or a local mock
+dependency to this scaffold.
 
 Add a rung to this list only when the CLI ships the command.
 

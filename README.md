@@ -40,12 +40,17 @@ purpose. `ymk dev` does not read it.
 |---|---|
 | `ymk init` | Copies the scaffold; leaves `project` for you to set |
 | `ymk dev` | Fetches env, applies platform permissions, runs the bot |
+| `ymk bot test` | Hosted run against the simulator — the only simulated path |
 | `ymk env pull` | Writes `.env.local` for editors |
 | `ymk env diff` | Compares local file against the platform's set |
 | `ymk doctor` | Reports missing/mismatched keys by name |
 | `ymk bot deploy` | Bundles with `--frozen --cached-only` (D-223) |
 | `ymk bot logs` | Streams journald lines as SSE |
-| `ymk capture` | Records Discord fixtures for offline tests |
+| `ymk capture` | Records Discord fixtures from real traffic |
+
+**There is no local simulator.** `ymk dev` runs your bot against real Discord
+for the self-host loop; anything simulated runs on our servers via
+`ymk bot test`.
 
 ## Deploy
 
